@@ -1,0 +1,21 @@
+#规则使用说明
+# editorconfig.org
+
+root = true
+
+[*]
+charset = utf-8
+indent_size = 4
+# 代码缩进
+
+indent_style = space
+#空格缩进
+
+insert_final_newline = true
+#空白结尾
+
+trim_trailing_whitespace = true
+#去除空白行
+
+[*.md]
+trim_trailing_whitespace = false
