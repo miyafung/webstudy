@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,intial-scale=1.0">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>05</title>
+    <!-- 1.导入Vue的包-->
+    <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+</head>
+
+<body>
+    <!-- 2.创建一个要控制的区域-->
+    <div id="app">
+        <input type="button" value="动起来" @click="dong">
+        <input type="button" value="停止">
+
+        <h4>{{ msg }}</h4>
+    </div>
+
+
+
+<script>
+    //注意：VM实例中，如果要获取data上的数据或者methods中的方法
+    //必须通过this.数据属性名 或 this.方法名 来进行访问，这里的this，就标识我们 new 出来
+    //vm 实例对象
+   var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'跑马灯，跑马灯...!',
+        },
+        methods:{
+            dong(){
+                setInterval(() => {
+                    console.log(this.msg)
+                    //获取到头的第一个字符
+                    var start = _this.msg.substring(0,1)
+                    //获取到后面的所有字符串
+                    var end = _this.msg.substring(1)
+                    //重新拼接到新的字符串，并赋值个 this.msg
+                    _this.msg = end + start
+
+                },400)
+            }
+        }
+    })
+
+    //分析
+    //1. 给动起来按钮，绑定一个点击事件 v-on @
+    //2. 在按钮的事件处理函数中，写相关的业务逻辑代码：闹到msg 字符串，然后调用字符串的substring 来进行字符串的截取操作，把第一个截取出来，放到最后一个位置即可
+    //3. 为了实现点击下按钮自动截取的功能，需要报2步骤中的代码放到一个定时器中去
+</script>
+</body>
+</html>
+
+
+<!-- 1. 如何定义一个基本的Vue代码结构 -->
+<!-- 2. 插值表达式 和 v-text -->
+<!-- 3. v-clock -->
+<!-- 4. v-html -->
+<!-- 5. v-bind  vue提供的属性绑定机制 缩写 : -->
+<!-- 6. v-on    vue提供的事件绑定机制 缩写 @ -->
