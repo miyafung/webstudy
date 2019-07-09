@@ -13,7 +13,7 @@
     <!-- 2.创建一个要控制的区域-->
     <div id="app">
         <input type="button" value="动起来" @click="dong">
-        <input type="button" value="停止">
+        <input type="button" value="停止"@click="stop">
 
         <h4>{{ msg }}</h4>
     </div>
@@ -28,10 +28,13 @@
         el:'#app',
         data:{
             msg:'跑马灯，跑马灯...!',
+            intervalId:null //在data上定义，定时器ID
         },
         methods:{
             dong(){
-                setInterval(() => {
+
+            if(this.intervalId!=null) return;
+            this.intervalId = setInterval(() => {
                     console.log(this.msg)
                     //获取到头的第一个字符
                     var start = _this.msg.substring(0,1)
@@ -41,6 +44,12 @@
                     _this.msg = end + start
 
                 },400)
+            },
+
+            stop(){ //停止定时器
+                clearInterval( this.intervalId)
+                // 每当清除了定时器后，要报intervalId 设置为 null
+                this.intervalId = null
             }
         }
     })
